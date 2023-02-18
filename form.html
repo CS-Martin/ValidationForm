@@ -1,0 +1,203 @@
+<html>
+
+<head>
+    <title>Form Activity</title>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+        function inputPass() {
+            var pass = document.myForm.password.value;
+
+            var dateToday = new Date();
+            var dateOfbirth = new Date(document.myForm.bDay.value);
+            var age = dateToday.getFullYear() - dateOfbirth.getFullYear();
+
+            // Check if the birth month is later than the current month, or if the birth month is the same as the current month
+            // but the birth day is later than the current day. If so, subtract 1 from the age to adjust for the fact that the
+            // person hasn't had their birthday yet this year.
+            if (dateOfbirth.getMonth() > dateToday.getMonth() || (dateOfbirth.getMonth() == dateToday.getMonth() && dateOfbirth.getDate() > dateToday.getDate())) {
+                age--;
+            }
+
+            if (age <= 21 || age == null) {
+                window.alert("Minors are not allowed!");
+                return false;
+            }
+
+            if (pass.length < 8 || pass == "") {
+                window.alert("Password must be at least 8 characters.");
+                return false; // if password is invalid or empty
+            }
+            else {
+                window.alert("You have successfully created your account.");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <form name="myForm" onsubmit="return inputPass()">
+                <div class="title">
+                    <h1>Registration Form</h1>
+                </div>
+                <div class="hero">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" />
+                </div>
+                <div class="hero">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" />
+                </div>
+                <div class="hero">
+                    <label for="nickName">Nick Name:</label>
+                    <input type="text" id="nickName" name="nickName" />
+                </div>
+                <div class="hero">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" />
+                </div class="hero">
+                <div class="hero">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" />
+                </div>
+                <p id="password"></p>
+                <div class="hero">
+                    <label for="bDay">Date of Birth:</label>
+                    <input type="date" id="bDay" name="bDay" />
+                </div>
+                <div>
+                    <label>Gender:</label> <br />
+                    <input type="radio" id="male" name="gender" value="Male" />
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="Female" />
+                    <label for="female">Female</label>
+                    <input type="radio" id="other" name="gender" value="Other" />
+                    <label for="other">Other</label>
+                </div>
+                <div class="hero">
+                    <label for="mobileNumber">Mobile:</label>
+                    <input type="number" id="mobileNum" name="mobileNum" />
+                </div>
+                <div class="hero">
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address"></textarea>
+                </div>
+                <div class="btn">
+                    <input type="submit" class="button" name="submit" value="Submit" />
+                    <input type="reset" class="button" name="reset" value="Reset" />
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Varela+Round);
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+    @import url(https://fonts.cdnfonts.com/css/gilroy-bold);
+
+    html,
+    body {
+        margin: 0 auto;
+        font-family: 'Varela Round', sans-serif;
+    }
+
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+
+    }
+
+    .container {
+        width: 500px;
+        max-width: 450px;
+        border-radius: 15px;
+        padding: 25px;
+
+    }
+
+    .container:hover {
+
+        transition: 0.3s;
+        box-shadow: 7px 5px 26px -2px rgba(0, 0, 0, 0.86);
+        -webkit-box-shadow: 7px 5px 26px -2px rgba(0, 0, 0, 0.86);
+        -moz-box-shadow: 7px 5px 26px -2px rgba(0, 0, 0, 0.86);
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .hero input {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .btn input:hover {
+        background-color: #4b75c9;
+        transition: 1ms ease-out;
+    }
+
+    .btn {
+        margin-top: 8px;
+        text-align: center;
+    }
+
+    .btn input {
+        padding: 5px;
+        border-radius: 10px;
+        width: 30%;
+        cursor: pointer;
+        margin-left: 5px;
+    }
+
+    textarea {
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"],
+    input[type="number"],
+    textarea {
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    input[type="date"]:focus,
+    input[type="number"]:focus,
+    textarea:focus {
+        outline: none;
+        border: 2px solid #4b75c9;
+    }
+
+    input[type="radio"] {
+        display: inline-block;
+        margin-right: 10px;
+        appearance: none;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ccc;
+        transition: all 0.3s ease;
+    }
+
+    input[type="radio"]:checked {
+        background-color: #4b75c9;
+        border-color: #4b75c9;
+        color: #fff;
+    }
+</style>
+
+</html>
